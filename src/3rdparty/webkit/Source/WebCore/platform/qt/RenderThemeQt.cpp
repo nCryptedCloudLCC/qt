@@ -1122,6 +1122,7 @@ ControlPart RenderThemeQt::initializeCommonQStyleOptions(QStyleOption& option, R
 {
     // Default bits: no focus, no mouse over
     option.state &= ~(QStyle::State_HasFocus | QStyle::State_MouseOver);
+    option.state |= QStyle::State_Enabled;
 
     if (isReadOnlyControl(o))
         // Readonly is supported on textfields.
