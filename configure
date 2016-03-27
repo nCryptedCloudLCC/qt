@@ -7870,14 +7870,18 @@ else
     QCONFIG_FLAGS="$QCONFIG_FLAGS QT_NO_SVG"
 fi
 
+ECHO "JHP: $CFG_WEBKIT"
 if [ "$CFG_WEBKIT" != "no" ]; then
-    CFG_WEBKIT="$canBuildWebKit"
+   if ["$canBuildWebKit" = "no"]; then
+       CFG_WEBKIT="$canBuildWebKit"
+   fi
 fi
 
 if [ "$CFG_WEBKIT" != "no" ]; then
     # This include takes care of adding "webkit" to QT_CONFIG.
     cp -f "$relpath/src/3rdparty/webkit/Source/WebKit/qt/qt_webkit_version.pri" "$outpath/mkspecs/modules/qt_webkit_version.pri"
     # The reason we set CFG_WEBKIT, is such that the printed overview of what will be enabled, shows correctly.
+    ECHO "JHP: $CFG_WEBKIT"
     if [ "$CFG_WEBKIT" = "debug" ]; then
         QMAKE_CONFIG="$QMAKE_CONFIG webkit-debug"
     fi
